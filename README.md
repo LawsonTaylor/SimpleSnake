@@ -1,5 +1,7 @@
 # SimpleSnake
 
+Playable here => https://simplesnake.herokuapp.com/
+
 ### TODO:
 - [X] Fake php app for HEROKU deployment.
 - [] Clean Up Code
