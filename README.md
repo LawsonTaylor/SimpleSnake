@@ -1,7 +1,7 @@
 # SimpleSnake
 
 ### TODO:
-
+- [X] Fake php app for HEROKU deployment.
 - [] Clean Up Code
     * [] Use global constants where possible
     * [] remove un-needed variables in classes
