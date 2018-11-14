@@ -9,6 +9,11 @@
         padding: 0;
         margin: 0;
       }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
       canvas {
         background: #eee;
         display: block;
@@ -21,17 +26,38 @@
         padding: 20px;
         font-family: 'Press Start 2P', cursive;
       }
+      #start-game {
+        padding: 10px 20px;
+        background-color: green;
+        position: absolute;
+        top: 200px;
+        width: 100px;
+        border: 0px;
+        border-radius: 10px;
+        color: #fff;
+        font-size: 24px;
+        left: calc(50% - 50px);
+      }
     </style>
   </head>
   <body>
+    <button id="start-game">PLAY</button>
     <canvas id="xanvas" width="480" height="320"></canvas>
     <div class="menu">SCORE: <span id="score"></span></div>
   </body>
   <script>
+    var inGame = false;
     var CANVAS_WIDTH = 480;
     var CANVAS_HEIGHT = 320;
     var canvas = document.getElementById("xanvas").getContext("2d");
     var menuScore = document.getElementById("score");
+    var start = document.getElementById("start-game");
+    var speed = 10;
+
+    start.addEventListener("click", () => {
+      inGame = true;
+      start.style.display = "none";
+    })
 
     document.addEventListener(
       "keydown",
@@ -178,6 +204,8 @@
         if (bx && by) {
           score = 0;
           snake.body = [];
+          inGame = false;
+          start.style.display = "inline";
           for (let b = 0; b < 4; b++) {
             snake.body.push(
               addBody({ x: 200, y: 200 + b * 16, direction: "up" })
@@ -216,10 +244,12 @@
     }
 
     var FPS = 30;
-
+    
     setInterval(function() {
-      update();
-      draw();
-    }, 1000 / 10);
+      if(inGame){ 
+        update();
+        draw();
+      }
+    }, 1000 / speed);
   </script>
 </html>
